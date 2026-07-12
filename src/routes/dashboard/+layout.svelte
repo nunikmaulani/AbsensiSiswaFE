@@ -1,4 +1,6 @@
 <script lang="ts">
+	import '$lib/styles/layout.css';
+
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -9,7 +11,7 @@
 	let sidebarOpen = $state(true);
 
 	const menus = [
-		{ name: 'Dashboard', icon: '🏠', url: '/' },
+		{ name: 'Dashboard', icon: '🏠', url: '/dashboard' },
 		{ name: 'Guru', icon: '👨‍🏫', url: '/guru' },
 		{ name: 'Siswa', icon: '👨‍🎓', url: '/siswa' },
 		{ name: 'Kelas', icon: '🏫', url: '/kelas' },
