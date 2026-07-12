@@ -5,8 +5,10 @@
 
 	import HeaderDashboard from '$lib/components/dashboard/HeaderDashboard.svelte';
 	import StatCard from '$lib/components/dashboard/StatCard.svelte';
+	import AttendanceSummary from '$lib/components/dashboard/AttendanceSummary.svelte';
 	import QuickAction from '$lib/components/dashboard/QuickAction.svelte';
 	import SystemInfo from '$lib/components/dashboard/SystemInfo.svelte';
+	import AttendanceChart from '$lib/components/dashboard/AttendanceChart.svelte';
 	
 
 	let totalGuru = $state(0);
@@ -114,6 +116,10 @@
 			/>
 
 		</div>
+
+		<AttendanceSummary />
+
+		<AttendanceChart />
 
 		<QuickAction />
 
