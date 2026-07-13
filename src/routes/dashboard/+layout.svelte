@@ -93,8 +93,8 @@
 
 			<div class="user">
 				Guru
-			</div>
-
+			</div> 
+			
 		</header>
 
 		<main>

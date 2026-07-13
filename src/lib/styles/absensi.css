@@ -1,32 +1,98 @@
-.attendance-page{
-	padding:20px;
+<style>
+
+.page{
+
+padding:30px;
+
+font-family:Georgia,serif;
+
 }
 
-.attendance-page h1{
-	color:#2563eb;
-	margin-bottom:5px;
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 4px 15px rgba(0,0,0,.1);
+
 }
 
-.subtitle{
-	color:#64748b;
-	margin-bottom:25px;
-}
-.stats-grid{
-	display:grid;
-	grid-template-columns:repeat(4,1fr);
-	gap:20px;
-	margin-bottom:25px;
+.form{
+
+display:flex;
+
+gap:20px;
+
+margin-bottom:25px;
+
 }
 
-.stats-card{
-	padding:20px;
-	border-radius:15px;
-	text-align:center;
-	color:white;
-	font-weight:bold;
+.form div{
+
+display:flex;
+
+flex-direction:column;
+
 }
 
-.hadir{background:#4CAF50;}
-.izin{background:#FFB300;}
-.sakit{background:#42A5F5;}
-.alpha{background:#EF5350;}
+label{
+
+margin-bottom:8px;
+
+font-weight:bold;
+
+}
+
+input[type="date"],
+select{
+
+height:45px;
+
+padding:0 15px;
+
+border:1px solid #ccc;
+
+border-radius:8px;
+
+min-width:220px;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+thead{
+
+background:#edf2fb;
+
+}
+
+th{
+
+padding:15px;
+
+text-align:center;
+
+}
+
+td{
+
+padding:15px;
+
+text-align:center;
+
+border-bottom:1px solid #eee;
+
+}
+
+</style>

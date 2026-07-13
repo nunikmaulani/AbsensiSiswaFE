@@ -29,30 +29,34 @@
 		<h2>Tambah Kelas</h2>
 
 		<div class="form-group">
-			<label>Nama Kelas</label>
-
+			<label>
+				<span>Nama kelas</span> 
 			<input
 				type="text"
 				bind:value={namaKelas}
 			/>
+			</label>
 		</div>
 
 		<div class="form-group">
-			<label>Wali Kelas</label>
-
+			<label>
+				<span>Wali Kelas</span>W
 			<input
 				type="text"
 				bind:value={waliKelas}
 			/>
+			</label>
 		</div>
 
 		<div class="form-group">
-			<label>Jumlah Siswa</label>
+			<label>
+				<span>Jumlah Siswa</span>
 
 			<input
 				type="number"
 				bind:value={jumlahSiswa}
 			/>
+			</label>
 		</div>
 
 		<div class="modal-action">
