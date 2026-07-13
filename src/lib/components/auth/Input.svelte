@@ -1,17 +1,19 @@
 <script lang="ts">
 import { Eye, EyeOff } from '@lucide/svelte';
+import '$lib/styles/auth.css';
 
 	interface Props {
-		label: string;
+		// label: string;
 		type?: string;
 		placeholder?: string;
 		value: string;
 		id?: string;
 		showToggle?: boolean;
+		
 	}
 
 	let {
-		label,
+		// label,
 		type = "text",
 		placeholder = "",
 		value = $bindable(),
@@ -30,13 +32,14 @@ import { Eye, EyeOff } from '@lucide/svelte';
 </script>
 
 <div class="form-group">
-	<label for={id}>{label}</label>
+	<!-- <label for={id}>{label}</label> -->
 
 	<div class="input-wrapper">
 		<input
 			id={id}
 			type={inputType}
 			placeholder={placeholder}
+			autocomplete="new-password"
 			bind:value
 		/>
 

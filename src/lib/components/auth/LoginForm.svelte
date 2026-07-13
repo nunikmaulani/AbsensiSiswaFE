@@ -75,7 +75,7 @@
 
 				<Input
 					id="email"
-					label="Email"
+					// label="Email"
 					type="email"
 					placeholder="Masukkan email"
 					bind:value={email}
@@ -83,9 +83,10 @@
 
 				<Input
 					id="password"
-					label="Password"
+					// label="Password"
 					type="password"
 					placeholder="Masukkan password"
+					showToggle={true}
 					bind:value={password}
 				/>
 

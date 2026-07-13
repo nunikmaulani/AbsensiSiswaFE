@@ -93,14 +93,14 @@
 
 				<Input
 					id="nama"
-					label="Nama Lengkap"
+					// label="Nama Lengkap"
 					placeholder="Masukkan nama lengkap"
 					bind:value={namaGuru}
 				/>
 
 				<Input
 					id="email"
-					label="Email"
+					// label="Email"
 					type="email"
 					placeholder="Masukkan email"
 					bind:value={email}
@@ -108,13 +108,13 @@
 
 				<Input
 					id="npm"
-					label="NPM"
+					// label="NPM"
 					placeholder="Masukkan NPM"
 					bind:value={npmGuru}
 				/>
 				<Input
 					id="password"
-					label="Password"
+					// label="Password"
 					type="password"
 					placeholder="Masukkan password"
 					showToggle={true}
@@ -123,7 +123,7 @@
 
 				<Input
 					id="confirmPassword"
-					label="Konfirmasi Password"
+					// label="Konfirmasi Password"
 					type="password"
 					placeholder="Masukkan kembali password"
 					showToggle={true}
