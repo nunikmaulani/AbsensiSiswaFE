@@ -1,60 +1,61 @@
 <script lang="ts">
-import { Eye, EyeOff } from '@lucide/svelte';
-import '$lib/styles/auth.css';
+    import { Eye, EyeOff } from '@lucide/svelte';
+    import type { SvelteHTMLElements } from 'svelte/elements';
+    import '$lib/styles/auth.css';
 
-	interface Props {
-		// label: string;
-		type?: string;
-		placeholder?: string;
-		value: string;
-		id?: string;
-		showToggle?: boolean;
-		
-	}
+    // 1. Ekstrak tipe input ke dalam type alias terpisah agar TypeScript tidak bingung
+    type HTMLInputProps = SvelteHTMLElements['input'];
 
-	let {
-		// label,
-		type = "text",
-		placeholder = "",
-		value = $bindable(),
-		id = "",
-		showToggle = false
-	}: Props = $props();
+    // 2. Sekarang interface bisa meng-extend identifier 'HTMLInputProps' dengan aman
+    interface Props extends HTMLInputProps {
+        type?: string;
+        placeholder?: string;
+        value: string;
+        id?: string;
+        showToggle?: boolean;
+    }
 
-	let isVisible = $state(false);
+    // 3. Destructuring props Svelte 5 seperti biasa
+    let {
+        type = "text",
+        placeholder = "",
+        value = $bindable(),
+        id = "",
+        showToggle = false,
+        ...restProps // Menampung autocomplete, readonly, dll.
+    }: Props = $props();
 
-	const inputType = $derived(
-		showToggle
-			? (isVisible ? "text" : "password")
-			: type
-	);
+    let isVisible = $state(false);
 
+    const inputType = $derived(
+        showToggle
+            ? (isVisible ? "text" : "password")
+            : type
+    );
 </script>
 
 <div class="form-group">
-	<!-- <label for={id}>{label}</label> -->
+    <div class="input-wrapper">
+        <input
+            id={id || undefined}
+            type={inputType}
+            placeholder={placeholder || undefined}
+            bind:value={value}
+            {...restProps} 
+        />
 
-	<div class="input-wrapper">
-		<input
-			id={id}
-			type={inputType}
-			placeholder={placeholder}
-			autocomplete="new-password"
-			bind:value
-		/>
-
-		{#if showToggle}
-			<button
-				type="button"
-				class="toggle-password"
-				onclick={() => (isVisible = !isVisible)}
-			>
-				{#if isVisible}
-					<EyeOff size={20} />
-				{:else}
-					<Eye size={20} />
-				{/if}
-			</button>
-		{/if}
-	</div>
+        {#if showToggle}
+            <button
+                type="button"
+                class="toggle-password"
+                onclick={() => (isVisible = !isVisible)}
+            >
+                {#if isVisible}
+                    <EyeOff size={20} />
+                {:else}
+                    <Eye size={20} />
+                {/if}
+            </button>
+        {/if}
+    </div>
 </div>
