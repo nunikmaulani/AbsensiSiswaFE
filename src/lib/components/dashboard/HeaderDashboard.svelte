@@ -1,18 +1,35 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+
+	function logout() {
+		localStorage.removeItem('token');
+		localStorage.removeItem('namaGuru');
+		localStorage.removeItem('emailGuru');
+		localStorage.removeItem('guruId');
+
+		goto('/auth/login');
+	}
 
 	let jam = $state('');
+	let namaGuru = $state('Admin');
 
 	function updateJam() {
 		jam = new Date().toLocaleTimeString('id-ID');
 	}
 
 	onMount(() => {
+
+		namaGuru =
+			localStorage.getItem('namaGuru') || 'Admin';
+
 		updateJam();
 
-		const interval = setInterval(updateJam, 1000);
+		const interval =
+			setInterval(updateJam, 1000);
 
 		return () => clearInterval(interval);
+
 	});
 
 	const tanggal = new Date().toLocaleDateString('id-ID', {
@@ -42,7 +59,7 @@
 	<div>
 
 		<h1>
-			👋 {greeting}, Admin
+			👋 {greeting}, {namaGuru}
 		</h1>
 
 		<p>
@@ -51,11 +68,22 @@
 
 	</div>
 
-	<div class="datetime">
+	<div class="header-right">
 
-		<p>📅 {tanggal}</p>
+		<div class="datetime">
 
-		<h2>{jam}</h2>
+			<p>📅 {tanggal}</p>
+
+			<h2>{jam}</h2>
+
+		</div>
+
+		<button
+			class="logout-btn"
+			onclick={logout}
+		>
+			🚪 Logout
+		</button>
 
 	</div>
 

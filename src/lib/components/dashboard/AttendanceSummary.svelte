@@ -1,8 +1,19 @@
 <script lang="ts">
-	let hadir = 25;
-	let izin = 3;
-	let sakit = 1;
-	let alpha = 2;
+
+	interface Props {
+		hadir: number;
+		izin: number;
+		sakit: number;
+		alpha: number;
+	}
+
+	let {
+		hadir,
+		izin,
+		sakit,
+		alpha
+	}: Props = $props();
+
 </script>
 
 <div class="summary">

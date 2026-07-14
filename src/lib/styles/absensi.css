@@ -1,98 +1,249 @@
-<style>
+/* ==========================================
+   ABSENSI PAGE
+========================================== */
 
-.page{
-
-padding:30px;
-
-font-family:Georgia,serif;
-
+body {
+	background: #f6f8fb;
+	font-family: "Poppins", sans-serif;
 }
 
-.card{
-
-background:white;
-
-padding:25px;
-
-border-radius:15px;
-
-box-shadow:0 4px 15px rgba(0,0,0,.1);
-
+.absensi-container {
+	max-width: 1200px;
+	margin: 40px auto;
+	padding: 30px;
 }
 
-.form{
+/* ==========================================
+   HEADER
+========================================== */
 
-display:flex;
-
-gap:20px;
-
-margin-bottom:25px;
-
+.absensi-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
 }
 
-.form div{
-
-display:flex;
-
-flex-direction:column;
-
+.absensi-header h1 {
+	font-size: 30px;
+	color: #2f3b52;
+	margin-bottom: 6px;
 }
 
-label{
-
-margin-bottom:8px;
-
-font-weight:bold;
-
+.absensi-header p {
+	color: #777;
+	font-size: 15px;
 }
 
-input[type="date"],
-select{
+/* ==========================================
+   CARD
+========================================== */
 
-height:45px;
+.summary-card {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	margin-bottom: 30px;
+}
 
-padding:0 15px;
+.card {
+	background: white;
+	border-radius: 16px;
+	padding: 22px;
+	box-shadow: 0 8px 20px rgba(0,0,0,.06);
+	text-align: center;
+}
 
-border:1px solid #ccc;
+.card h3 {
+	font-size: 15px;
+	color: #666;
+	margin-bottom: 10px;
+}
 
-border-radius:8px;
+.card p {
+	font-size: 34px;
+	font-weight: bold;
+	color: #7fa8d8;
+}
 
-min-width:220px;
+/* ==========================================
+   FORM
+========================================== */
 
+.form-card {
+	background: white;
+	border-radius: 16px;
+	padding: 25px;
+	box-shadow: 0 8px 20px rgba(0,0,0,.06);
+	margin-bottom: 30px;
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group label {
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: #444;
+}
+
+.form-group input,
+.form-group select {
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	font-size: 15px;
+	background: white;
+	transition: .3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+	outline: none;
+	border-color: #7fa8d8;
+	box-shadow: 0 0 0 4px rgba(127,168,216,.2);
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-container {
+	background: white;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px rgba(0,0,0,.06);
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead {
+	background: #7fa8d8;
+	color: white;
+}
+
+thead th {
+	padding: 16px;
+	text-align: left;
+	font-weight: 600;
+}
+
+tbody td {
+	padding: 16px;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+tbody tr:hover {
+	background: #f7fbff;
+}
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.status-select {
+	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid #ddd;
+	background: white;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.button-area {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 25px;
+}
+
+.btn-save {
+	background: #7fa8d8;
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn-save:hover {
+	background: #6997ce;
+}
+
+/* ==========================================
+   RIWAYAT
+========================================== */
+
+.history-card {
+	background: white;
+	border-radius: 16px;
+	padding: 25px;
+	box-shadow: 0 8px 20px rgba(0,0,0,.06);
+	margin-top: 30px;
+}
+
+.history-card h2 {
+	margin-bottom: 20px;
+	color: #2f3b52;
+}
+
+/* ==========================================
+   EMPTY
+========================================== */
+
+.empty-data {
+	text-align: center;
+	padding: 25px;
+	color: #888;
+	font-style: italic;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:768px){
+
+.summary-card{
+	grid-template-columns:1fr;
+}
+
+.form-row{
+	grid-template-columns:1fr;
+}
+
+.table-container{
+	overflow-x:auto;
 }
 
 table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:20px;
-
+	min-width:700px;
 }
 
-thead{
-
-background:#edf2fb;
-
+.button-area{
+	justify-content:center;
 }
 
-th{
-
-padding:15px;
-
-text-align:center;
-
+.btn-save{
+	width:100%;
 }
 
-td{
-
-padding:15px;
-
-text-align:center;
-
-border-bottom:1px solid #eee;
-
 }
-
-</style>

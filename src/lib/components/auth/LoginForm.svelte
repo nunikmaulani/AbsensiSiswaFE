@@ -30,9 +30,23 @@
 		});
 
 		console.log(result);
-
-		// untuk menyimpan token
+		
 		localStorage.setItem('token', result.token);
+
+		localStorage.setItem(
+			'namaGuru',
+			result.guru.namaGuru
+		);
+
+		localStorage.setItem(
+			'emailGuru',
+			result.guru.email
+		);
+
+		localStorage.setItem(
+			'guruId',
+			String(result.guru.id)
+		);
 
 		alert('Login berhasil');
 

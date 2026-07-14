@@ -9,12 +9,18 @@
     import QuickAction from '$lib/components/dashboard/QuickAction.svelte';
     import SystemInfo from '$lib/components/dashboard/SystemInfo.svelte';
     import AttendanceChart from '$lib/components/dashboard/AttendanceChart.svelte';
-    
+    import { getDashboard } from '$lib/services/dashboard';
 
     let totalGuru = $state(0);
     let totalSiswa = $state(0);
     let totalKelas = $state(0);
-    let totalAbsensi = $state(0);
+
+    let hadir = $state(0);
+    let izin = $state(0);
+    let sakit = $state(0);
+    let alpha = $state(0);
+
+    let grafik = $state<any[]>([]);
 
     let loading = $state(true);
 
@@ -26,45 +32,38 @@
     });
 
     async function loadDashboard() {
-        try {
-            const token = localStorage.getItem('token');
 
-            const headers = {
-                Authorization: `Bearer ${token}`
-            };
+    try {
 
-            const [guruRes, siswaRes, kelasRes, absensiRes] = await Promise.all([
-                fetch('http://localhost:3000/guru', { headers }),
-                fetch('http://localhost:3000/siswa', { headers }),
-                fetch('http://localhost:3000/kelas', { headers }),
-                fetch('http://localhost:3000/absensi', { headers })
-            ]);
+        const data = await getDashboard();
 
-            if (guruRes.ok) {
-                const guru = await guruRes.json();
-                totalGuru = guru.count ?? 0;
-            }
+        totalGuru = data.totalGuru;
 
-            if (siswaRes.ok) {
-                const siswa = await siswaRes.json();
-                totalSiswa = siswa.count ?? 0;
-            }
+        totalSiswa = data.totalSiswa;
 
-            if (kelasRes.ok) {
-                const kelas = await kelasRes.json();
-                totalKelas = kelas.count ?? 0;
-            }
+        totalKelas = data.totalKelas;
 
-            if (absensiRes.ok) {
-                const absensi = await absensiRes.json();
-                totalAbsensi = absensi.count ?? 0;
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            loading = false;
-        }
+        hadir = data.ringkasan.hadir;
+
+        izin = data.ringkasan.izin;
+
+        sakit = data.ringkasan.sakit;
+
+        alpha = data.ringkasan.alpha;
+
+        grafik = data.grafik;
+
+    } catch (err) {
+
+        console.log(err);
+
+    } finally {
+
+        loading = false;
+
     }
+
+}
 
     onMount(loadDashboard);
 </script>
@@ -104,18 +103,24 @@
                 color="#BDB2FF"
             />
 
-            <StatCard
-                title="Total Absensi"
-                value={totalAbsensi}
-                icon="📝"
-                color="#FFB4A2"
+           <StatCard
+                title="Hadir Hari Ini"
+                value={hadir}
+                icon="✅"
+                color="#9FE2BF"
             />
         </div>
 
-        <AttendanceSummary />
+        <AttendanceSummary
+            hadir={hadir}
+            izin={izin}
+            sakit={sakit}
+            alpha={alpha}
+        />
 
-        <AttendanceChart />
-
+        <AttendanceChart
+            grafik={grafik}
+        />
         <QuickAction />
 
         <SystemInfo />
