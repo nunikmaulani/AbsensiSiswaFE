@@ -8,9 +8,21 @@ function getToken(): string {
 }
 
 export interface Kelas {
-	id_kelas: number;   
-	nama_kelas: string; 
-	id_guru: number;    
+	id: number;
+	namaKelas: string;
+	guruId: number;
+	namaGuru: string;
+	jumlahSiswa: number;   
+}
+
+export interface CreateKelasRequest {
+	namaKelas: string;
+	guruId: number;
+}
+
+export interface UpdateKelasRequest {
+	namaKelas: string;
+	guruId: number;
 }
 
 export async function getKelas(): Promise<Kelas[]> {
@@ -27,7 +39,8 @@ export async function getKelas(): Promise<Kelas[]> {
 	return result.rows || result;
 }
 
-export async function createKelas(payload: Omit<Kelas, 'id_kelas'>): Promise<void> {
+export async function createKelas(
+	payload: CreateKelasRequest): Promise<void> {
 	const response = await fetch(`${BASE_URL}/kelas`, {
 		method: 'POST',
 		headers: {
@@ -41,8 +54,9 @@ export async function createKelas(payload: Omit<Kelas, 'id_kelas'>): Promise<voi
 	if (!response.ok) throw new Error(result.message || 'Gagal menambahkan data kelas');
 }
 
-export async function updateKelas(id_kelas: number, payload: Partial<Kelas>): Promise<void> {
-	const response = await fetch(`${BASE_URL}/kelas/${id_kelas}`, {
+export async function updateKelas(
+	id: number,payload: UpdateKelasRequest): Promise<void>{
+	const response = await fetch(`${BASE_URL}/kelas/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -55,8 +69,8 @@ export async function updateKelas(id_kelas: number, payload: Partial<Kelas>): Pr
 	if (!response.ok) throw new Error(result.message || 'Gagal memperbarui data kelas');
 }
 
-export async function deleteKelas(id_kelas: number): Promise<void> {
-	const response = await fetch(`${BASE_URL}/kelas/${id_kelas}`, {
+export async function deleteKelas(id: number): Promise<void> {
+	const response = await fetch(`${BASE_URL}/kelas/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
