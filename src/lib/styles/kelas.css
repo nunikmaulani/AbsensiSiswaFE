@@ -1,6 +1,3 @@
-/* ==========================================
-   KELAS PAGE
-========================================== */
 
 body {
 	background: #f6f8fb;
@@ -12,10 +9,6 @@ body {
 	margin: 40px auto;
 	padding: 30px;
 }
-
-/* ==========================================
-   HEADER
-========================================== */
 
 .kelas-header {
 	display: flex;
@@ -51,10 +44,6 @@ body {
 	background: #9c88d6;
 }
 
-/* ==========================================
-   SUMMARY
-========================================== */
-
 .kelas-summary {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -82,10 +71,6 @@ body {
 	color: #8e7cc3;
 }
 
-/* ==========================================
-   SEARCH
-========================================== */
-
 .kelas-toolbar {
 	margin-bottom: 25px;
 }
@@ -106,10 +91,6 @@ body {
 	border-color: #b39ddb;
 	box-shadow: 0 0 0 4px rgba(179,157,219,.2);
 }
-
-/* ==========================================
-   TABLE
-========================================== */
 
 .table-container {
 	background: white;
@@ -150,10 +131,6 @@ tbody tr:hover {
 	font-style: italic;
 }
 
-/* ==========================================
-   BUTTON
-========================================== */
-
 .btn-edit,
 .btn-delete {
 	border: none;
@@ -182,11 +159,6 @@ tbody tr:hover {
 .btn-delete:hover {
 	background: #ef9a9a;
 }
-
-/* ==========================================
-   MODAL
-========================================== */
-
 .modal-overlay {
 	position: fixed;
 	inset: 0;
@@ -273,10 +245,6 @@ tbody tr:hover {
 .btn-save:hover {
 	background: #9c88d6;
 }
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
 
 @media (max-width: 768px) {
 

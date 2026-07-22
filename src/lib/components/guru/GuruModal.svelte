@@ -17,7 +17,6 @@
         onClose,
         onSuccess
     }: Props = $props();
-
 	let namaGuru = $state('');
 	let npmGuru = $state('');
 	let email = $state('');
@@ -38,51 +37,37 @@
     });
 
 	async function simpanGuru() {
-
 	if (!namaGuru || !npmGuru || !email || !password) {
 		alert('Semua data wajib diisi.');
 		return;
 	}
-
 	try {
-
 		await createGuru({
 			namaGuru,
 			npmGuru,
 			email,
 			password
 		});
-
 		alert('Guru berhasil ditambahkan.');
-
 		onSuccess();
         onClose();
-
 	} catch (error) {
-
 		alert(
 			error instanceof Error
 				? error.message
 				: 'Terjadi kesalahan.'
 		);
-
 	}
-
     }
 </script>
-
 {#if open}
 	<div class="modal-overlay">
-
 		<div class="modal">
-
 			<h2>
                 {guru ? 'Edit Guru' : 'Tambah Guru'}
             </h2>
-
 			<div class="form-group">
 				<label for="namaGuru">Nama Guru</label>
-
 				<input
                     id="namaGuru"
                     type="text"
@@ -90,10 +75,8 @@
                     bind:value={namaGuru}
                 />
 			</div>
-
 			<div class="form-group">
 				<label for="npm">NPM</label>
-
 				<Input
                     id="npm"
                     type="text"
@@ -101,10 +84,8 @@
                     bind:value={npmGuru}
                 />
 			</div>
-
 			<div class="form-group">
 				<label for="email">Email</label>
-
 				<Input
                     id="email"
                     type="email"
@@ -112,10 +93,8 @@
                     bind:value={email}
                 />
 			</div>
-
 			<div class="form-group">
 				<label for="password">Password</label>
-
 				<Input
                     id="password"
                     type="password"
@@ -124,26 +103,20 @@
                     bind:value={password}
                 />
 			</div>
-
 			<div class="modal-button">
-
 				<button
 					class="btn-cancel"
 					onclick={onClose}
 				>
 					Batal
 				</button>
-
 				<button
 					class="btn-save"
 					onclick={simpanGuru}
 				>
 					{guru ? 'Update' : 'Simpan'}
 				</button>
-
 			</div>
-        
 		</div>
-
 	</div>
 {/if}

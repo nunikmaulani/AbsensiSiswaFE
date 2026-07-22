@@ -14,17 +14,14 @@ export interface Kelas {
 	namaGuru: string;
 	jumlahSiswa: number;   
 }
-
 export interface CreateKelasRequest {
 	namaKelas: string;
 	guruId: number;
 }
-
 export interface UpdateKelasRequest {
 	namaKelas: string;
 	guruId: number;
 }
-
 export async function getKelas(): Promise<Kelas[]> {
 	const response = await fetch(`${BASE_URL}/kelas`, {
 		method: 'GET',
@@ -33,12 +30,10 @@ export async function getKelas(): Promise<Kelas[]> {
 			'Authorization': `Bearer ${getToken()}`
 		}
 	});
-
 	const result = await response.json();
 	if (!response.ok) throw new Error(result.message || 'Gagal mengambil data kelas');
 	return result.rows || result;
 }
-
 export async function createKelas(
 	payload: CreateKelasRequest): Promise<void> {
 	const response = await fetch(`${BASE_URL}/kelas`, {
@@ -49,11 +44,9 @@ export async function createKelas(
 		},
 		body: JSON.stringify(payload)
 	});
-
 	const result = await response.json();
 	if (!response.ok) throw new Error(result.message || 'Gagal menambahkan data kelas');
 }
-
 export async function updateKelas(
 	id: number,payload: UpdateKelasRequest): Promise<void>{
 	const response = await fetch(`${BASE_URL}/kelas/${id}`, {
@@ -64,11 +57,9 @@ export async function updateKelas(
 		},
 		body: JSON.stringify(payload)
 	});
-
 	const result = await response.json();
 	if (!response.ok) throw new Error(result.message || 'Gagal memperbarui data kelas');
 }
-
 export async function deleteKelas(id: number): Promise<void> {
 	const response = await fetch(`${BASE_URL}/kelas/${id}`, {
 		method: 'DELETE',
@@ -77,7 +68,6 @@ export async function deleteKelas(id: number): Promise<void> {
 			'Authorization': `Bearer ${getToken()}`
 		}
 	});
-
 	const result = await response.json();
 	if (!response.ok) throw new Error(result.message || 'Gagal menghapus data kelas');
 }

@@ -2,11 +2,9 @@
     import { Eye, EyeOff } from '@lucide/svelte';
     import type { SvelteHTMLElements } from 'svelte/elements';
     import '$lib/styles/auth.css';
-
-    // 1. Ekstrak tipe input ke dalam type alias terpisah agar TypeScript tidak bingung
+    
     type HTMLInputProps = SvelteHTMLElements['input'];
 
-    // 2. Sekarang interface bisa meng-extend identifier 'HTMLInputProps' dengan aman
     interface Props extends HTMLInputProps {
         type?: string;
         placeholder?: string;
@@ -14,17 +12,14 @@
         id?: string;
         showToggle?: boolean;
     }
-
-    // 3. Destructuring props Svelte 5 seperti biasa
     let {
         type = "text",
         placeholder = "",
         value = $bindable(),
         id = "",
         showToggle = false,
-        ...restProps // Menampung autocomplete, readonly, dll.
+        ...restProps 
     }: Props = $props();
-
     let isVisible = $state(false);
 
     const inputType = $derived(
@@ -43,7 +38,6 @@
             bind:value={value}
             {...restProps} 
         />
-
         {#if showToggle}
             <button
                 type="button"

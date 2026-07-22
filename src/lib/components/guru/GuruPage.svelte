@@ -1,11 +1,8 @@
 <script lang="ts">
     import '$lib/styles/guru.css';
-
     import { onMount } from 'svelte';
-
     import GuruHeader from './GuruHeader.svelte';
     import GuruModal from './GuruModal.svelte';
-    
     import { getGuru, deleteGuru } from '$lib/services/guru';
     import type { Guru } from '$lib/services/guru';
 
@@ -13,21 +10,18 @@
     let keyword = $state('');
     let modalTerbuka = $state(false);
     let guruDipilih = $state<Guru | null>(null);
-
+        
     function handleTambahGuru() {
         guruDipilih = null;
         modalTerbuka = true;
     }
-
     function handleEditGuru(guru: Guru) {
         guruDipilih = guru;
         modalTerbuka = true;
     }
-
     async function handleHapusGuru(id: number, nama: string) {
         const konfirmasi = confirm(`Apakah Anda yakin ingin menghapus guru "${nama}"?`);
         if (!konfirmasi) return;
-
         try {
             await deleteGuru(id); 
             alert('Guru berhasil dihapus.');
@@ -37,15 +31,12 @@
             alert(error instanceof Error ? error.message : 'Gagal menghapus data guru.');
         }
     }
-
     function tutupModal() {
         modalTerbuka = false;
     }
-
     onMount(() => {
         loadGuru();
     });
-
     const hasilPencarian = $derived(
         daftarGuru.filter((guru) =>
             guru.namaGuru
@@ -53,7 +44,6 @@
                 .includes(keyword.toLowerCase())
         )
     );
-
     async function loadGuru() {
         try {
             daftarGuru = await getGuru();
@@ -63,11 +53,8 @@
         }
     }
 </script>
-
 <div class="guru-container">
-
     <GuruHeader onTambah={handleTambahGuru} />
-
     <div class="guru-toolbar">
         <input
             type="text"
@@ -76,7 +63,6 @@
             bind:value={keyword}
         />
     </div>
-
     <div class="table-container">
         <table>
             <thead>
@@ -96,12 +82,9 @@
                         <td>{guru.npmGuru}</td>
                         <td>{guru.email}</td>
                         <td class="aksi">
-                            
                             <button class="btn-edit" onclick={() => handleEditGuru(guru)}>
                                 Edit
-                            </button>
-
-                           
+                            </button>                    
                             <button class="btn-delete" onclick={() => handleHapusGuru(guru.id, guru.namaGuru)}>
                                 Hapus
                             </button>

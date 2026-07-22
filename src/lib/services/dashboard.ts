@@ -10,12 +10,9 @@ export async function getDashboard() {
 			Authorization: `Bearer ${getToken()}`
 		}
 	});
-
 	const result = await response.json();
-
 	if (!response.ok) {
 		throw new Error(result.message);
 	}
-
 	return result;
 }

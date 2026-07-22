@@ -18,7 +18,6 @@
 		onClose,
 		onSuccess
 	}: Props = $props();
-
 	let namaKelas = $state('');
 	let guruId = $state('');
 
@@ -37,13 +36,11 @@
 			alert('Semua data wajib diisi.');
 			return;
 		}
-
 		try {
 			const payload = {
 				namaKelas,
 				guruId: Number(guruId)
 			};
-
 			if (kelas) {
 				await updateKelas(kelas.id, payload);
 				alert('Data kelas berhasil diperbarui.');
@@ -51,10 +48,8 @@
 				await createKelas(payload);
 				alert('Data kelas berhasil ditambahkan.');
 			}
-
 			onSuccess();
 			onClose();
-
 		} catch (error) {
 			alert(
 				error instanceof Error
@@ -67,16 +62,12 @@
 
 {#if open}
 <div class="modal-overlay">
-
 	<div class="modal">
-
 		<h2>
 			{kelas ? 'Edit Kelas' : 'Tambah Kelas'}
 		</h2>
-
 		<div class="form-group">
 			<label for="nama kelas">Nama Kelas</label>
-
 			<input
 				type="text"
 				class="search-input"
@@ -84,49 +75,36 @@
 				placeholder="Masukkan nama kelas"
 			/>
 		</div>
-
 		<div class="form-group">
 			<label for="wali kelas">Wali Kelas</label>
-
 			<select
 				class="select-kelas"
 				bind:value={guruId}
 			>
-
 				<option value="">
 					-- Pilih Guru --
 				</option>
-
 				{#each guru as item}
-
 					<option value={item.id}>
 						{item.namaGuru}
 					</option>
-
 				{/each}
-
 			</select>
 		</div>
-
 		<div class="modal-button">
-
 			<button
 				class="btn-cancel"
 				onclick={onClose}
 			>
 				Batal
 			</button>
-
 			<button
 				class="btn-save"
 				onclick={simpanKelas}
 			>
 				{kelas ? 'Update' : 'Simpan'}
 			</button>
-
 		</div>
-
 	</div>
-
 </div>
 {/if}
