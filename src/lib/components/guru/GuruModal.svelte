@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '$lib/styles/guru.css';
     import Input from '$lib/components/auth/Input.svelte';
-    import { createGuru } from '$lib/services/guru';
+    import { createGuru, updateGuru } from '$lib/services/guru';
     import type { Guru } from '$lib/services/guru';
 
 	interface Props {
@@ -17,6 +17,7 @@
         onClose,
         onSuccess
     }: Props = $props();
+
 	let namaGuru = $state('');
 	let npmGuru = $state('');
 	let email = $state('');
@@ -37,20 +38,39 @@
     });
 
 	async function simpanGuru() {
-	if (!namaGuru || !npmGuru || !email || !password) {
-		alert('Semua data wajib diisi.');
+	if (!namaGuru || !npmGuru || !email) {
+		alert('Nama Guru, NPM Guru, dan Email wajib diisi.');
 		return;
 	}
+
 	try {
-		await createGuru({
-			namaGuru,
-			npmGuru,
-			email,
-			password
-		});
-		alert('Guru berhasil ditambahkan.');
+		if (guru) {
+			await updateGuru(guru.id, {
+				namaGuru,
+				npmGuru,
+				email
+			});
+
+			alert('Data guru berhasil diperbarui.');
+		} else {
+			if (!password) {
+				alert('Password wajib diisi.');
+				return;
+			}
+
+			await createGuru({
+				namaGuru,
+				npmGuru,
+				email,
+				password
+			});
+
+			alert('Guru berhasil ditambahkan.');
+		}
+
 		onSuccess();
-        onClose();
+		onClose();
+
 	} catch (error) {
 		alert(
 			error instanceof Error
@@ -58,7 +78,7 @@
 				: 'Terjadi kesalahan.'
 		);
 	}
-    }
+}
 </script>
 {#if open}
 	<div class="modal-overlay">
@@ -93,16 +113,18 @@
                     bind:value={email}
                 />
 			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<Input
-                    id="password"
-                    type="password"
-                    placeholder="Masukkan password"
-                    showToggle={true}
-                    bind:value={password}
-                />
-			</div>
+			{#if !guru}
+				<div class="form-group">
+					<label for="password">Password</label>
+					<Input
+						id="password"
+						type="password"
+						placeholder="Masukkan password"
+						showToggle={true}
+						bind:value={password}
+					/>
+				</div>
+			{/if}
 			<div class="modal-button">
 				<button
 					class="btn-cancel"

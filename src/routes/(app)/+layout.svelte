@@ -17,7 +17,7 @@
            
             localStorage.removeItem('token');
             showLogoutModal = false;
-            await goto('/login');
+            await goto('/auth/login');
         } catch (err) {
             console.error('Gagal logout:', err);
         }

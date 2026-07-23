@@ -50,7 +50,7 @@ export async function getSiswaByKelas(id: number): Promise<SiswaAbsensi[]> {
 	return result.rows;
 }
 export async function getRiwayatAbsensi(): Promise<RiwayatAbsensi[]> {
-	const response = await fetch(`${BASE_URL}/absensi`, {
+	const response = await fetch(`${BASE_URL}/absensi/riwayat`, {
 		headers: {
 			Authorization: `Bearer ${getToken()}`
 		}
